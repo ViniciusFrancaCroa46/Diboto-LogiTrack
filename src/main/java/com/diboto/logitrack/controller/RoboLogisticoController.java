@@ -1,6 +1,6 @@
 package com.diboto.logitrack.controller;
 
-import com.diboto.logitrack.model.RoboLogistico;
+import com.diboto.logitrack.model.RoboLogistico;""
 import com.diboto.logitrack.service.RoboLogisticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,37 +18,37 @@ public class RoboLogisticoController {
     private RoboLogisticoService service;
 
     @GetMapping
-    public List<Cliente> listarRobos() {
+    public List<RoboLogistico> listarRobos() {
         return service.listarRobos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarRoboPorId(@PathVariable Long id) {
-        Optional<Cliente> cliente = service.buscarRoboPorId(id);
-        return cliente.map(ResponseEntity::ok)
+    public ResponseEntity<RoboLogistico> buscarRoboPorId(@PathVariable Long id) {
+        Optional<RoboLogistico> roboLogistico = service.buscarRoboPorId(id);
+        return roboLogistico.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente criarCliente(@RequestBody Cliente cliente) {
-        return service.salvarCliente(cliente);
+    public RoboLogistico criarRoboLogistico(@RequestBody RoboLogistico roboLogistico) {
+        return service.salvarRoboLogistico(roboLogistico);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody Cliente clienteAtualizado) {
-        if (!service.existeCliente(id)) {
+    public ResponseEntity<RoboLogistico> atualizarRoboLogistico(@PathVariable Long id, @RequestBody RoboLogistico roboLogisticoAtualizado) {
+        if (!service.existeRoboLogistico(id)) {
             return ResponseEntity.notFound().build();
         }
-        clienteAtualizado.setId(id);
-        return ResponseEntity.ok(service.salvarCliente(clienteAtualizado));
+        roboLogisticoAtualizado.setId(id);
+        return ResponseEntity.ok(service.salvarRoboLogistico(roboLogisticoAtualizado));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removerCliente(@PathVariable Long id) {
-        if (!service.excluirCliente(id)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado.");
+    public ResponseEntity<String> removerRoboLogistico(@PathVariable Long id) {
+        if (!service.excluirRoboLogistico(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Robo Logistico não encontrado.");
         }
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente excluído com sucesso!");
+        return ResponseEntity.status(HttpStatus.OK).body("Robo Logistico excluído com sucesso!");
     }
 }
