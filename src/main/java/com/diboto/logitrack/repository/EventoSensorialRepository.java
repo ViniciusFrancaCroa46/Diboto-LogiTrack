@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EntregaSimuladaRepository extends JpaRepository<EntregaSimulada, Long> {
+public interface EventoSensorialRepository extends JpaRepository<EntregaSimulada, Long> {
     // Buscar entregas por robô responsável
     List<EntregaSimulada> findByRoboResponsavelId(Long roboResponsavelId);
 
