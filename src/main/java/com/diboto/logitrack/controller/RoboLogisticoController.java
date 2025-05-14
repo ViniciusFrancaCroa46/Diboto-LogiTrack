@@ -1,6 +1,6 @@
 package com.diboto.logitrack.controller;
 
-import com.diboto.logitrack.model.RoboLogistico;""
+import com.diboto.logitrack.model.RoboLogistico;
 import com.diboto.logitrack.service.RoboLogisticoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +19,12 @@ public class RoboLogisticoController {
 
     @GetMapping
     public List<RoboLogistico> listarRobos() {
-        return service.listarRobos();
+        return service.listarRoboLogistico();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RoboLogistico> buscarRoboPorId(@PathVariable Long id) {
-        Optional<RoboLogistico> roboLogistico = service.buscarRoboPorId(id);
+    public ResponseEntity<RoboLogistico> buscarRoboLogisticoPorId(@PathVariable Long id) {
+        Optional<RoboLogistico> roboLogistico = service.buscarRoboLogisticoPorId(id);
         return roboLogistico.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
